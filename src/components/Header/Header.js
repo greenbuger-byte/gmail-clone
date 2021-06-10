@@ -8,9 +8,11 @@ import AppsIcon from '@material-ui/icons/Apps';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import './Header.scss';
+import { useSelector } from 'react-redux';
+import {selectUser} from '../../features/userSlice';
 
-
-const Header = () => {
+const Header = ({signOut}) => {
+    const user = useSelector(selectUser);
     return (
         <div className="header">
             <div className="header__left">
@@ -27,10 +29,10 @@ const Header = () => {
                 </IconButton>    
             </div>
             <div className="header__right">
-            
               <IconButton><AppsIcon/></IconButton>  
               <IconButton><NotificationsIcon/></IconButton>  
-              <Avatar/>
+              
+              <Avatar src={user?.photoUrl} onClick={signOut}  alt={user.displayName}/>
             </div>
            
         </div>

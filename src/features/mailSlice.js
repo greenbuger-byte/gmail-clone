@@ -5,11 +5,15 @@ name: 'mail',
 
 
 initialState: {
+    selectedMail: null,
     sendMessageIsOpen: false,
 }, 
 
 
 reducers: {
+    selectMail : (state, action) =>{
+        state.selectedMail = action.payload;
+    },
     openSendMessage: state =>{
         state.sendMessageIsOpen = true;
     },
@@ -19,7 +23,7 @@ reducers: {
     
 }});
 
-export const {openSendMessage, closeSendMessage} = mailSlice.actions; // action types
+export const {selectMail, openSendMessage, closeSendMessage} = mailSlice.actions; // action types
 
 
 /// thunks
@@ -29,7 +33,9 @@ export const {openSendMessage, closeSendMessage} = mailSlice.actions; // action 
 //     }, 1000);
 // }
 
-// mapGetters
+// actions
+export const selectOpenMail =  state => state.mail.selectedMail;
+
 export const selectSendMessageIsOpen = state => state.mail.sendMessageIsOpen;
 
 // reducer
