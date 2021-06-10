@@ -17,13 +17,17 @@ import {Button} from '@material-ui/core'
 import './Sidebar.scss';
 
 import SidebarOption from './SidebarOption';
+import {useDispatch} from "react-redux";
+import {openSendMessage} from "../../features/mailSlice";
 
 
 const Sidebar = () => {
+    const dispatch = useDispatch();
     return (
         <div className="sidebar">
             <Button  
                 className="sidebar__compose"
+                onClick={()=>dispatch(openSendMessage())}
                 startIcon={<AddIcon fontSize="large" />}
                 >
                     Compose
