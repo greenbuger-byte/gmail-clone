@@ -53,7 +53,7 @@ function Mail() {
                     </IconButton>
                 </div>
                 <div className="mail__toolsLeft">
-                <IconButton>
+                    <IconButton>
                         <UnfoldMoreIcon/>
                     </IconButton>
                     <IconButton>
@@ -69,10 +69,17 @@ function Mail() {
                     <h2>Subject</h2>
                     <LabelImportantIcon className="mail__important"/>
                     <p> Title</p>
-                    <p> 10pm sad</p>
+                    <p className="mail__time"> 10pm </p>
                 </div>
                 <div className="mail__message">
-                This is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a test
+                    <p>
+                            This is a testThis is a testThis is
+                        a testThis is a testThis is a testThis
+                        is a testThis is a testThis is a testThis 
+                        is a testThis is a testThis is a testThis 
+                        is a testThis is a testThis is a test
+                    </p>
+                
                 </div>
             </div>
         </div>
