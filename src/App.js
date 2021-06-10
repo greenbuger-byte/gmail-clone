@@ -11,9 +11,10 @@ import {MAIL_ROUTE, HOME_ROUTE} from './utils/paths';
 
 import './App.scss';
 import {useSelector} from "react-redux";
+import {selectSendMessageIsOpen} from "./features/mailSlice";
 
 function App() {
-    const {sendMessageIsOpen} = useSelector(state=>state.mail);
+    const sendMessageIsOpen = useSelector(selectSendMessageIsOpen);
   return (
     <div className="app">
       <Header/>

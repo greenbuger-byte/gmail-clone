@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Checkbox, IconButton} from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import RedoIcon from '@material-ui/icons/Redo';
@@ -10,13 +10,32 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import InboxIcon from '@material-ui/icons/Inbox';
 import PeopleIcon from '@material-ui/icons/People';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-
+import {db} from '../../components/Firebase';
 import Section from  '../Section/Section';
 import EmailRow from '../EmailRow/EmailRow';
 
 import './emailList.scss'
 
 function EmailList() {
+    const [emails, setEmails] = useState([]);
+    useEffect(() => {
+        db.collection('emails')
+            .orderBy('timeStamps', 'desc')
+            .onSnapshot((snapshot) => setEmails(
+                    snapshot.docs.map(doc=> {
+                        console.log(doc);
+                    return    ( {
+                            id:doc.id,
+                            data:doc.data()
+                        })
+                    }
+                    )
+                )
+                    );
+       console.log(emails)
+
+    }, []);
+
     return (
         <div className="emailList">
            <div className="emailList__settings">
@@ -34,32 +53,26 @@ function EmailList() {
                </div>
            </div>
            <div className="emailList__section">
-               <Section Icon={InboxIcon} title="primary" color="red" selected/>
+               <Section Icon={InboxIcon} title="Primary" color="red" selected/>
                <Section Icon={PeopleIcon} title="Social" color="#1A73E8"/>
                <Section Icon={LocalOfferIcon} title="Promotions" color="green"/>
            </div>
            <div className="emailList__list">
-                <EmailRow 
-                    title="Twitch" 
-                    subject="Hey follow streamer!!!Hey follow streamer!!!Hey follow streamer!!!Hey follow streamer!!!"
-                    description="This is a test"    
-                    time="10pm"
-                />  
-                <EmailRow 
-                    title="Twitch" 
-                    subject="Hey follow streamer!!!"
-                    description="This is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a test"    
-                    time="10pm"
-                />  
-                <EmailRow 
-                    title="Twitch" 
-                    subject="Hey follow streamer!!!"
-                    description="This is a test"    
-                    time="10pm"
-                />  
+               {emails.length>0? emails.map(({id, data:{to, subject, message, timeStamps}})=><EmailRow
+                   key={id}
+                    title={to}
+                   subject={subject}
+                   description={message}
+                   time={new Date(timeStamps?.seconds * 1000).toUTCString()}
+               /> ): <NoResult/>}
            </div>
         </div>
     );
+}
+const NoResult = () =>{
+    return <div className={'noEmails'}>
+       <h2><InboxIcon/> No emails</h2>
+</div>
 }
 
 export default EmailList;

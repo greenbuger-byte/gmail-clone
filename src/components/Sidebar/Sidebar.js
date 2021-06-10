@@ -32,8 +32,8 @@ const Sidebar = () => {
                 >
                     Compose
             </Button>
-            <SidebarOption Icon={InboxIcon} title={"Inbox"}   number={53}  />
-            <SidebarOption Icon={StarIcon}  title={"Starred"} number={53}  selected />
+            <SidebarOption Icon={InboxIcon} title={"Inbox"}   number={53}  selected/>
+            <SidebarOption Icon={StarIcon}  title={"Starred"} number={53}   />
             <SidebarOption Icon={LabelImportantIcon}  title={"Important"} number={53}/>
             <SidebarOption Icon={NearMeIcon}  title={"Sent"} number={53}  />
             <SidebarOption Icon={NoteIcon}  title={"Drafts"} number={53} />

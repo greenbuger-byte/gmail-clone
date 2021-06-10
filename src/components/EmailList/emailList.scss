@@ -24,3 +24,14 @@
         background-color:white;
     }
 }
+
+.noEmails{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-around;
+    color: gray;
+    padding: 50px;
+    font-weight: 400;
+
+}

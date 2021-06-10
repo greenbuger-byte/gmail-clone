@@ -4,20 +4,22 @@
     right: 50px;
     display: flex;
     width: 40%;
-    height: 40%;
+    min-height: 50%;
     max-width: 500px;
     flex-direction: column;
     border-top-left-radius: 10px;
     background-color: #404040;
     border-top-right-radius: 10px;
-    border: 1px solid whitesmoke;
+
+    border-bottom: transparent;
     box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.74);
     &__errors{
         background-color: white;
         color: red;
         text-align: right;
         padding: 2px;
-        font-size: 10px;
+        font-size: 12px;
+        font-weight: 300;
     }
     &__header{
         padding: 13px;
