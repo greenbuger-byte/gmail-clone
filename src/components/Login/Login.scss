@@ -1,0 +1,16 @@
+.login{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    &__container{
+        display: flex;
+        flex-direction:column;
+        padding: 40px;
+        & img {
+            width: 80px;
+            object-fit: contain;
+        }
+    }
+}
